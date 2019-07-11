@@ -1,3 +1,4 @@
+use std::prelude::v1::*;
 use std::fmt::{self, Display};
 
 use serde;
@@ -1233,6 +1234,7 @@ where
     E: serde::de::Error,
 {
     use std::error::Error;
+    #[allow(deprecated)]
     E::custom(e.description())
 }
 

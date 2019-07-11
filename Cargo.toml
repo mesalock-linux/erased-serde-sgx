@@ -9,9 +9,11 @@ documentation = "https://github.com/dtolnay/erased-serde"
 keywords = ["serde", "erasure"]
 include = ["Cargo.toml", "src/**/*.rs", "LICENSE-*", "README.md"]
 readme = "README.md"
+exclude = ["/sgx/*"]
 
 [dependencies]
-serde = "1.0.63"
+serde = { git = "https://github.com/mesalock-linux/serde-sgx" }
+sgx_tstd = { rev = "v1.0.9", git = "https://github.com/baidu/rust-sgx-sdk.git", optional = true }
 
 [dev-dependencies]
 serde_cbor = "0.9"
@@ -20,6 +22,8 @@ serde_json = "1.0"
 
 [features]
 unstable-debug = []
+default = ["mesalock_sgx"]
+mesalock_sgx = ["sgx_tstd"]
 
 [[test]]
 name = "test"

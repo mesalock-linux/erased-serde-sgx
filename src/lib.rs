@@ -90,6 +90,13 @@
 
 #![doc(html_root_url = "https://docs.rs/erased-serde/0.3.9")]
 #![cfg_attr(feature = "unstable-debug", feature(core_intrinsics))]
+#![cfg_attr(all(feature = "mesalock_sgx",
+                not(target_env = "sgx")), no_std)]
+#![cfg_attr(all(target_env = "sgx", target_vendor = "mesalock"), feature(rustc_private))]
+
+#[cfg(all(feature = "mesalock_sgx", not(target_env = "sgx")))]
+#[macro_use]
+extern crate sgx_tstd as std;
 
 #[macro_use]
 extern crate serde;

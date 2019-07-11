@@ -1,3 +1,4 @@
+use std::prelude::v1::*;
 use std::fmt::Display;
 use std::marker::PhantomData;
 
@@ -997,6 +998,7 @@ where
     E: serde::ser::Error,
 {
     use std::error::Error;
+    #[allow(deprecated)]
     E::custom(e.description())
 }
 
